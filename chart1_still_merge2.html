@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+      @font-face {
+          font-family: 'hyqihei50j';
+          src: url('../bj/font/50-webfont.woff2') format('woff2'),
+               url('../bj/font/50-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+      }
+
+
+/*text*/
+      text {
+      font-size: 6vw;
+      font-family: 'hyqihei50j';
+    }
+
+    @media screen and (min-width:30em){
+      text{
+        font-size: 1.5vw;
+        font-family: 'hyqihei50j';
+      }
+    }
+
+
+/*chart*/
+      #chart {
+        float:left;
+        width: 100%;
+        /*height:450px;*/
+      }
+
+      @media screen and (min-width:30em){
+        #chart{
+          margin-left: 15%; 
+          width: 50%;
+        }
+      }
+
+
+/*axis*/
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+/*.text1 the div for three paragraphs  */    
+      .text1 {
+        float:left;
+        padding:10px;
+        width: 95%;
+        margin-bottom: 1em;
+        font-family: "hyqihei50j";
+        font-size: 0.9em;
+        line-height: 150%;
+        color: #555;
+      }
+
+      @media screen and (min-width: 30em) {
+        .text1 {
+          width:20%;
+          margin-bottom: 1em;
+          margin-left: 0%;
+          margin-right: 5%;
+          font-family: "hyqihei50j";
+          font-size: 0.9em;
+          line-height: 200%;
+          color: #555;
+        }
+      }
+
+
+/*else*/
+      .button1 {
+        float: left;
+        padding: 10px;
+      }
+
+      p {
+          text-indent: 50px;
+        }
+
+      .btn {
+      margin-bottom: 2vw;
+      -webkit-border-radius: 8;
+      -moz-border-radius: 8;
+      border-radius: 3px;
+      font-family: Arial;
+      border: none;
+      color: #ccc;
+      font-size: 15px;
+      background: linear-gradient(#eee, #f9f9f9, #eee);
+      box-shadow: 1px 1px 1px #cecece;
+      padding: 2px 10px 2px 10px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #eeeeee;
+      color: #595959;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .selected {
+      color: black;
+      border-bottom: solid black 0.5px;
+    }
+
+
+</style>
+
+<body>
+
+  <div id="chart"></div>
+  <div class="button1">
+    <button class="btn" id="eighty">1982</button>
+    <button class="btn" id="ninty">1991</button>
+    <button class="btn" id="hundred">2003</button>
+  </div>
+  <div class="text1">
+
+      <p id="default_text">早在1951年国家制定第一个五年计划的时候，就明确提出“必须采取有效措施” ，“控制北京市人口的盲目增加，减少城市人口” 。之后每一次的城市总体规划都对有对人口规模限制的明确规定。<b>(戳戳上方按钮，查看不同年份的人口规划）</b></p>
+      <p id="limit1_text">1982年，规定要求“20年内全是常住人口控制在1000万人左右” ，然而四年后人口数量破千万，达到1028万人。</p>
+      <p id="limit2_text">1991年《北京总体规划方案》中改写人口限额，要求到2010年，北京常住人口控制在1250万人左右，同样，20年的期限“提前达标”了，1996年，北京常住人口达到1251万人。</p>
+      <p id="limit3_text">2003年的规划中，要求“到2020年北京实际居住人口控制在1800万人左右” ，六年后，北京人口达到1860万人。而最新公布的北京十三五规划纲要中再次对北京人口提出了严格红线，要求常住人口规模要控制在2300万人以内。曾有专家用“步步为营，节节败退”来评价北京人口调控的历史。</p>
+
+  </div>
+  
+
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+  var formatDate = d3.time.format("%Y");
+
+  var fullWidth = 1000;
+  var fullHeight = 700;
+
+  var margin = 100;
+
+  var width = fullWidth - margin - margin;
+  var height = fullHeight - margin;
+
+
+  var xScale = d3.time.scale()
+      .range([0, width]);
+
+  var yScale = d3.scale.linear()
+      .range([height, 0]);
+
+  var colorScale = d3.scale.linear().range(["#205580", "#9ec8da"]).interpolate(d3.interpolateLab);
+
+  var xAxis = d3.svg.axis()
+      .scale(xScale)
+      .orient("bottom")
+      .ticks(5)
+      .tickSize(35);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .ticks(5)
+      .tickSize(35);
+
+  var stack = d3.layout.stack()
+      .values(function(d) { return d.values; })
+      .x(function(d) { return formatDate.parse(d.Year);})
+      .y(function(d) { return + d.Population; });
+
+  var area = d3.svg.area()
+      .interpolate("cardinal")
+      .x(function(d) { return xScale(formatDate.parse(d.Year)); })
+      .y0(function(d) { return yScale(d.y0); })
+      .y1(function(d) { return yScale(d.y0 + d.y); });
+
+  var svg = d3.select("#chart").append("svg")
+      .attr("transform", "translate(" + margin + "," + margin + ")")
+      .attr("viewBox", "0 0 " + fullWidth + " " + fullHeight)
+      .style("max-width", fullWidth + "px")
+      .attr("preserveAspectRatio", "xMidYMid meet");
+
+  svg.append("clipPath")
+      .attr("id", "rectClip")
+      .append("rect")
+      .attr("height", "100%")
+      .attr("width", "100%")
+      .attr("x", 0);
+
+
+d3.csv("data/bj_population.csv", function(error, data1) {
+console.log(data1);
+
+  if (error) { console.log(error) };
+
+  var dataset =  d3.nest()
+    .key(function(d) {
+      return d.Huji;
+    })
+    .sortKeys(d3.descending) 
+    .sortValues(function (a, b) { return formatDate.parse(a.Year) - formatDate.parse(b.Year)})
+    .entries(data1);
+
+
+    var layers = stack(dataset);
+
+    xScale.domain(d3.extent(data1, function(d) { return formatDate.parse(d.Year); }));
+    yScale.domain([0, d3.max(data1, function(d) { return d.y0 + d.y; })]);
+
+
+  svg.selectAll(".layer")
+      .data(layers)
+      .enter()
+      .append("path")
+      .attr("class", "layer")
+      .attr("d", function(d) { return area(d.values); })
+      .attr("clip-path", "url(#rectClip)")
+      .attr("transform", "translate("+margin+",0)")
+      .style("fill", function(d, i) { return colorScale(i); });
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate("+margin+"," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate("+margin+",0)")
+      .call(yAxis);
+
+
+  var limit = d3.svg.line()
+              .defined(function(d) { return d; })
+              .x(function(d) {
+               return xScale(formatDate.parse(d.Year2)); 
+             })
+              .y(function(d){
+                return yScale(d.Limit);
+              });
+
+  //default
+      d3.select("#limit1_text").style("display", "none");
+      d3.select("#limit2_text").style("display", "none");
+      d3.select("#limit3_text").style("display", "none");
+
+  //set buttons:
+     d3.select("#eighty")
+      .on("click", function(){
+        d3.selectAll(".btn").classed("selected", false);
+        d3.select(".btn#eighty").classed("selected", true);
+        d3.select("#default_text").style("display", "none");
+        d3.select("#limit2_text").style("display", "none");
+        d3.select("#limit3_text").style("display", "none");
+        d3.select("#limit1_text").style("display", "inline");
+
+  //第一次规划
+    svg.append("g")
+         .append("line")
+         .attr({
+          x1: (width/37 * 4 + margin),
+          x2: (width/37 * 4 + margin),
+          y1: (height - height*5/11),
+          y2: (height)
+        })
+        .attr("stroke", "red")
+        .attr("stroke-dasharray", "3")
+        .attr("stroke-width", "0.3");
+
+    svg.append("g")
+         .append("line")
+         .attr({
+          x1: (width/37 * 8 + margin),
+          x2: (width/37 * 8 + margin),
+          y1: (height - height*5/11),
+          y2: (height)
+        })
+        .attr("stroke", "red")
+        .attr("stroke-dasharray", "3")
+        .attr("stroke-width", "0.3");
+
+    svg.append("text")
+        .attr("x", (width/37*4 + margin))
+        .attr("y", (height+margin/5))
+        .attr("text-anchor", "middle")
+        .text("1982")
+
+    svg.append("text")
+        .attr("x", (width/37*8 + margin))
+        .attr("y", (height+margin/5))
+        .attr("text-anchor", "middle")
+        .text("1986");
+
+    svg.append("text")
+        .attr("x", (width/37*5))
+        .attr("y", ((height - height*5.2/11)))
+        .attr("width", "10px")
+        .attr("text-anchor", "left")
+        .attr("color", "red")
+        .text("要求“20年内全市常住人口控制在1000万人左右”");
+
+    d3.csv("data/bj_limit1.csv", function(error, data1) {
+      if(error){ console.log("error");};
+      console.log(data1);
+        svg.append("path")
+        .datum(data1)
+        .attr("stroke",  "red")
+        .attr("transform", "translate("+margin+",0)")
+        .attr("d", limit);
+          });
+      });   
+
+     d3.select("#ninty")
+      .on("click", function(){
+        d3.selectAll(".btn").classed("selected", false);
+        d3.select(".btn#ninty").classed("selected", true);
+        d3.select("#default_text").style("display", "none");
+        d3.select("#limit1_text").style("display", "none");
+        d3.select("#limit3_text").style("display", "none");
+        d3.select("#limit2_text").style("display", "inline");
+
+      //第二次规划
+      svg.append("g")
+           .append("line")
+           .attr({
+            x1: (width/37 * 13 + margin),
+            x2: (width/37 * 13 + margin),
+            y1: (height - height* 25/44),
+            y2: (height)
+          })
+          .attr("stroke", "red")
+          .attr("stroke-dasharray", "3")
+          .attr("stroke-width", "0.3");
+      svg.append("g")
+           .append("line")
+           .attr({
+            x1: (width/37 * 18 + margin),
+            x2: (width/37 * 18 + margin),
+            y1: (height - height* 25/44),
+            y2: (height)
+          })
+          .attr("stroke", "red")
+          .attr("stroke-dasharray", "3")
+          .attr("stroke-width", "0.3");   
+
+      svg.append("text")
+          .attr("x", (width/37*13 + margin))
+          .attr("y", (height+margin/5))
+          .attr("text-anchor", "middle")
+          .text("1991");
+
+      svg.append("text")
+          .attr("x", (width/37*18 + margin))
+          .attr("y", (height+margin/5))
+          .attr("text-anchor", "middle")
+          .text("1996");
+
+      svg.append("text")
+          .attr("x", (width/37*14))
+          .attr("y", ((height - height*26/44)))
+          .attr("width", "10px")
+          .attr("text-anchor", "left")
+          .attr("color", "red")
+          .text("要求“到2010年，北京常住人口控制在1250万人左右”");
+
+
+      d3.csv("data/bj_limit2.csv", function(error, data2) {
+            if(error){ console.log("error");};
+            console.log(data2);
+
+              svg.append("path")
+              .datum(data2)
+              .attr("stroke",  "red")
+              .attr("transform", "translate("+margin+",0)")
+              .attr("d", limit);
+            });
+
+      });         
+
+
+    d3.select("#hundred")
+          .on("click", function(){
+            d3.selectAll(".btn").classed("selected", false);
+            d3.select(".btn#hundred").classed("selected", true);
+            d3.select("#default_text").style("display", "none");
+            d3.select("#limit1_text").style("display", "none");
+            d3.select("#limit2_text").style("display", "none");
+            d3.select("#limit3_text").style("display", "inline");
+
+      //第三次规划
+        svg.append("g")
+             .append("line")
+             .attr({
+              x1: (width/37 * 25 + margin),
+              x2: (width/37 * 25 + margin),
+              y1: (height - height* 9/11),
+              y2: (height)
+            })
+            .attr("stroke", "red")
+            .attr("stroke-dasharray", "3")
+            .attr("stroke-width", "0.3");
+        svg.append("g")
+             .append("line")
+             .attr({
+              x1: (width/37 * 31 + margin),
+              x2: (width/37 * 31 + margin),
+              y1: (height - height* 9/11),
+              y2: (height)
+            })
+            .attr("stroke", "red")
+            .attr("stroke-dasharray", "3")
+            .attr("stroke-width", "0.3");   
+
+        svg.append("text")
+            .attr("x", (width/37*25 + margin))
+            .attr("y", (height+margin/5))
+            .attr("text-anchor", "middle")
+            .text("2003");
+
+        svg.append("text")
+            .attr("x", (width/37*31 + margin))
+            .attr("y", (height+margin/5))
+            .attr("text-anchor", "middle")
+            .text("2009");
+
+        svg.append("text")
+            .attr("x", (width/37*26))
+            .attr("y", (height - height* 9.3/11))
+            .attr("width", "10px")
+            .attr("text-anchor", "left")
+            .text("要求“2020年北京实际居住人口控制在1800万人左右”");
+
+        d3.csv("data/bj_limit3.csv", function(error, data3) {
+        if(error){ console.log("error");};
+        console.log(data3);
+
+          svg.append("path")
+          .datum(data3)
+          .attr("stroke",  "red")
+          .attr("transform", "translate("+margin+",0)")
+          .attr("d", limit);      
+
+          });    
+      });
+});
+       
+
+
+</script>
