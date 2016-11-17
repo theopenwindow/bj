@@ -233,6 +233,19 @@ console.log(data1);
       .attr("transform", "translate("+margin+",0)")
       .call(yAxis);
 
+  svg.append("text")
+      .attr("x", (width + margin/10))
+      .attr("y", (height + margin/2))
+      .attr("width", "10px")
+      .attr("text-anchor", "left")
+      .text("（年）");
+  svg.append("text")
+      .attr("x", margin/10)
+      .attr("y", margin*0.21)
+      .attr("width", "10px")
+      .attr("text-anchor", "left")
+      .text("人数（万）");
+
 
   var limit = d3.svg.line()
               .defined(function(d) { return d; })
@@ -248,6 +261,38 @@ console.log(data1);
       d3.select("#limit2_text").style("display", "none");
       d3.select("#limit3_text").style("display", "none");
 
+  //legend
+      svg.append("g")
+          .append("rect")
+          .attr("x", margin*1.5)
+          .attr("y", margin)
+          .attr("width", "10px")
+          .attr("height", "50px")
+          .attr("fill", "#9ec8da"); 
+      svg.append("g")
+          .append("rect")
+          .attr("x", margin*1.5)
+          .attr("y", margin*1.5)
+          .attr("width", "10px")
+          .attr("height", "50px")
+          .attr("fill", "#205580"); 
+
+      svg.append("text")
+         .attr("x", margin*1.7)
+         .attr("y", margin*1.3)
+         .attr("text-anchor", "left")
+         .attr("fill", "black")
+         .text("北京户籍人口");
+
+      svg.append("text")
+         .attr("x", margin*1.7)
+         .attr("y", margin*1.8)
+         .attr("text-anchor", "left")
+         .attr("fill", "black")
+         .text("非北京户籍人口")    
+
+
+
   //set buttons:
      d3.select("#eighty")
       .on("click", function(){
@@ -257,6 +302,7 @@ console.log(data1);
         d3.select("#limit2_text").style("display", "none");
         d3.select("#limit3_text").style("display", "none");
         d3.select("#limit1_text").style("display", "inline");
+
 
   //第一次规划
     svg.append("g")
@@ -287,12 +333,14 @@ console.log(data1);
         .attr("x", (width/37*4 + margin))
         .attr("y", (height+margin/5))
         .attr("text-anchor", "middle")
+        .attr("fill", "red")
         .text("1982")
 
     svg.append("text")
         .attr("x", (width/37*8 + margin))
         .attr("y", (height+margin/5))
         .attr("text-anchor", "middle")
+        .attr("fill", "red")
         .text("1986");
 
     svg.append("text")
@@ -300,7 +348,7 @@ console.log(data1);
         .attr("y", ((height - height*5.2/11)))
         .attr("width", "10px")
         .attr("text-anchor", "left")
-        .attr("color", "red")
+        .attr("background-color", "red")
         .text("要求“20年内全市常住人口控制在1000万人左右”");
 
     d3.csv("data/bj_limit1.csv", function(error, data1) {
@@ -351,12 +399,14 @@ console.log(data1);
           .attr("x", (width/37*13 + margin))
           .attr("y", (height+margin/5))
           .attr("text-anchor", "middle")
+          .attr("fill", "red")
           .text("1991");
 
       svg.append("text")
           .attr("x", (width/37*18 + margin))
           .attr("y", (height+margin/5))
           .attr("text-anchor", "middle")
+          .attr("fill", "red")
           .text("1996");
 
       svg.append("text")
@@ -419,16 +469,18 @@ console.log(data1);
             .attr("x", (width/37*25 + margin))
             .attr("y", (height+margin/5))
             .attr("text-anchor", "middle")
+            .attr("fill", "red")
             .text("2003");
 
         svg.append("text")
             .attr("x", (width/37*31 + margin))
             .attr("y", (height+margin/5))
             .attr("text-anchor", "middle")
+            .attr("fill", "red")
             .text("2009");
 
         svg.append("text")
-            .attr("x", (width/37*26))
+            .attr("x", (width/37*20))
             .attr("y", (height - height* 9.3/11))
             .attr("width", "10px")
             .attr("text-anchor", "left")
