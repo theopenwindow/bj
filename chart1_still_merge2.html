@@ -12,26 +12,14 @@
 
       body {
         margin: 0;
+        font-family: "hyqihei50j";
       }
-
-/*text*/
-      text {
-      font-size: 6vw;
-      font-family: 'hyqihei50j';
-    }
-
-    @media screen and (min-width:30em){
-      text{
-        font-size: 1.5vw;
-        font-family: 'hyqihei50j';
-      }
-    }
 
 
 /*chart*/
       #chart {
+        float:left;
         width: 100%;
-        /*height:450px;*/
       }
 
       @media screen and (min-width:30em){
@@ -39,17 +27,8 @@
           margin-left: 15%; 
           width: 50%;
         }
-      }
-
-
-/*axis*/
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
+      } 
+      
 /*.text1 the div for three paragraphs  */    
       .text1 {
         float:left;
@@ -57,7 +36,6 @@
         padding-left: 2.5%;
         padding-right:2.5%;
         margin-bottom: 1em;
-        font-family: "hyqihei50j";
         font-size: 0.9em;
         line-height: 150%;
         color: #555;
@@ -69,19 +47,30 @@
           margin-bottom: 1em;
           margin-left: 0%;
           margin-right: 5%;
-          font-family: "hyqihei50j";
           font-size: 0.9em;
           line-height: 200%;
           color: #555;
         }
+      }     
+
+    .button1 {
+      float:left;
+      padding: 10px;
+    }  
+
+
+/*axis*/
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
       }
+
+
 
 
 /*else*/
-      .button1 {
-        float: left;
-        padding: 10px;
-      }
 
       .btn {
       margin-bottom: 2vw;
@@ -238,6 +227,7 @@ console.log(data1);
       .attr("width", "10px")
       .attr("text-anchor", "left")
       .text("（年）");
+
   svg.append("text")
       .attr("x", margin/10)
       .attr("y", margin*0.21)
