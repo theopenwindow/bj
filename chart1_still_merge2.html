@@ -37,7 +37,7 @@
         padding-right:2.5%;
         margin-bottom: 1em;
         font-size: 0.9em;
-        line-height: 150%;
+        line-height: 200%;
         color: #555;
       }
 
@@ -55,8 +55,13 @@
 
     .button1 {
       float:left;
-      padding: 10px;
-    }  
+    } 
+
+    @media screen and (min-width: 30em) {
+      .button1 {
+        padding: 30px;
+      }
+    }
 
 
 /*axis*/
@@ -98,6 +103,7 @@
       color: black;
       border-bottom: solid black 0.5px;
     }
+
 
 
 </style>
@@ -302,7 +308,7 @@ console.log(data1);
           y1: (height - height*5/11),
           y2: (height)
         })
-        .attr("stroke", "red")
+        .attr("stroke", "rgb(119,0,0)")
         .attr("stroke-dasharray", "3")
         .attr("stroke-width", "0.3");
 
@@ -314,7 +320,7 @@ console.log(data1);
           y1: (height - height*5/11),
           y2: (height)
         })
-        .attr("stroke", "red")
+        .attr("stroke", "rgb(119,0,0)")
         .attr("stroke-dasharray", "3")
         .attr("stroke-width", "0.3");
 
@@ -322,30 +328,39 @@ console.log(data1);
         .attr("x", (width/37*4 + margin))
         .attr("y", (height+margin/5))
         .attr("text-anchor", "middle")
-        .attr("fill", "red")
+        .attr("fill", "rgb(119,0,0)")
         .text("1982")
 
     svg.append("text")
         .attr("x", (width/37*8 + margin))
         .attr("y", (height+margin/5))
         .attr("text-anchor", "middle")
-        .attr("fill", "red")
+        .attr("fill", "rgb(119,0,0)")
         .text("1986");
+
+    svg.append("g")
+          .append("rect")
+          .attr("x", "105")
+          .attr("y", "292")
+          .attr("rx", "5")
+          .attr("ry", "5")
+          .attr("width", "270px")
+          .attr("height", "30px")
+          .attr("fill", "rgba(182,182,183,0.3)");
 
     svg.append("text")
         .attr("x", (width/37*5))
-        .attr("y", ((height - height*5.2/11)))
+        .attr("y", ((height - height*5.3/11)))
         .attr("width", "10px")
         .attr("text-anchor", "left")
-        .attr("background-color", "red")
-        .text("要求“20年内全市常住人口控制在1000万人左右”");
+        .text("要求到2002年常住人口1000万人左右");
 
     d3.csv("data/bj_limit1.csv", function(error, data1) {
       if(error){ console.log("error");};
       console.log(data1);
         svg.append("path")
         .datum(data1)
-        .attr("stroke",  "red")
+        .attr("stroke",  "rgb(119,0,0)")
         .attr("transform", "translate("+margin+",0)")
         .attr("d", limit);
           });
@@ -369,7 +384,7 @@ console.log(data1);
             y1: (height - height* 25/44),
             y2: (height)
           })
-          .attr("stroke", "red")
+          .attr("stroke", "rgb(119,0,0)")
           .attr("stroke-dasharray", "3")
           .attr("stroke-width", "0.3");
       svg.append("g")
@@ -380,7 +395,7 @@ console.log(data1);
             y1: (height - height* 25/44),
             y2: (height)
           })
-          .attr("stroke", "red")
+          .attr("stroke", "rgb(119,0,0)")
           .attr("stroke-dasharray", "3")
           .attr("stroke-width", "0.3");   
 
@@ -388,23 +403,33 @@ console.log(data1);
           .attr("x", (width/37*13 + margin))
           .attr("y", (height+margin/5))
           .attr("text-anchor", "middle")
-          .attr("fill", "red")
+          .attr("fill", "rgb(119,0,0)")
           .text("1991");
 
       svg.append("text")
           .attr("x", (width/37*18 + margin))
           .attr("y", (height+margin/5))
           .attr("text-anchor", "middle")
-          .attr("fill", "red")
+          .attr("fill", "rgb(119,0,0)")
           .text("1996");
+
+      svg.append("g")
+            .append("rect")
+            .attr("x", "300")
+            .attr("y", "222")
+            .attr("rx", "5")
+            .attr("ry", "5")
+            .attr("width", "255px")
+            .attr("height", "30px")
+            .attr("fill", "rgba(182,182,183,0.2)");
 
       svg.append("text")
           .attr("x", (width/37*14))
-          .attr("y", ((height - height*26/44)))
+          .attr("y", ((height - height*26.1/44)))
           .attr("width", "10px")
           .attr("text-anchor", "left")
-          .attr("color", "red")
-          .text("要求“到2010年，北京常住人口控制在1250万人左右”");
+          .attr("color", "rgb(119,0,0)")
+          .text("要求到2010年常住人口1250万左右");
 
 
       d3.csv("data/bj_limit2.csv", function(error, data2) {
@@ -413,7 +438,7 @@ console.log(data1);
 
               svg.append("path")
               .datum(data2)
-              .attr("stroke",  "red")
+              .attr("stroke",  "rgb(119,0,0)")
               .attr("transform", "translate("+margin+",0)")
               .attr("d", limit);
             });
@@ -439,7 +464,7 @@ console.log(data1);
               y1: (height - height* 9/11),
               y2: (height)
             })
-            .attr("stroke", "red")
+            .attr("stroke", "rgb(119,0,0)")
             .attr("stroke-dasharray", "3")
             .attr("stroke-width", "0.3");
         svg.append("g")
@@ -450,7 +475,7 @@ console.log(data1);
               y1: (height - height* 9/11),
               y2: (height)
             })
-            .attr("stroke", "red")
+            .attr("stroke", "rgb(119,0,0)")
             .attr("stroke-dasharray", "3")
             .attr("stroke-width", "0.3");   
 
@@ -458,22 +483,32 @@ console.log(data1);
             .attr("x", (width/37*25 + margin))
             .attr("y", (height+margin/5))
             .attr("text-anchor", "middle")
-            .attr("fill", "red")
+            .attr("fill", "rgb(119,0,0)")
             .text("2003");
 
         svg.append("text")
             .attr("x", (width/37*31 + margin))
             .attr("y", (height+margin/5))
             .attr("text-anchor", "middle")
-            .attr("fill", "red")
+            .attr("fill", "rgb(119,0,0)")
             .text("2009");
 
+        svg.append("g")
+            .append("rect")
+            .attr("x", "559")
+            .attr("y", "70")
+            .attr("width", "290px")
+            .attr("height", "30px")
+            .attr("rx", "5")
+            .attr("ry", "5")
+            .attr("fill", "rgba(182,182,183,0.3)");
+
         svg.append("text")
-            .attr("x", (width/37*20))
+            .attr("x", (width/37*26))
             .attr("y", (height - height* 9.3/11))
             .attr("width", "10px")
             .attr("text-anchor", "left")
-            .text("要求“2020年北京实际居住人口控制在1800万人左右”");
+            .text("要求到2020年北京常住人口1800万左右");
 
         d3.csv("data/bj_limit3.csv", function(error, data3) {
         if(error){ console.log("error");};
@@ -481,7 +516,7 @@ console.log(data1);
 
           svg.append("path")
           .datum(data3)
-          .attr("stroke",  "red")
+          .attr("stroke",  "rgb(119,0,0)")
           .attr("transform", "translate("+margin+",0)")
           .attr("d", limit);      
 

@@ -341,37 +341,31 @@
 
 
       #pop {
-        height: 600px;
-      }
-
-      @media screen and (min-width: 30em){
-        #pop {
-          height: 600px;
-        }
+        height: 800px;
       }
 
       #class {
-        height: 650px;
+        height: 850px;
       }
 
       @media screen and (min-width: 30em){
         #class {
-          height: 550px;
+          height: 750px;
         }
       }
 
       #talents {
-        height: 1400px;
+        height: 1750px;
       }
 
       @media screen and (min-width: 30em){
         #talents {
-          height: 1700px;
+          height: 1950px;
         }
       }
 
       #elasticity {
-        height: 380px;
+        height: 550px;
       }
 
 /*      @media screen and (min-width: 30em){
@@ -381,22 +375,24 @@
       }*/
 
 
-      h1 {
-        text-align: center;
-        margin-top: 1em;
-        margin-bottom: 3em;
-        color: #205580;
-        font-size: 48px;
+      h3 {
+        text-align: left;
+        margin-top: 3em;
+        margin-bottom: 2em;
+        color: #444444;
+        width: 95%;
+        padding-left:2.5%;
+        padding-right:2.5%;
       }
 
       p {
         width: 95%;
         padding-left:2.5%;
         padding-right:2.5%;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
         font-family: "hyqihei50j";
         font-size: 0.9em;
-        line-height: 150%;
+        line-height: 200%;
         text-indent: 2em;
         color: #555;
       }
@@ -404,14 +400,13 @@
       .video {
         width: 95%;
         padding-bottom: 0.3%;
-        border-bottom: solid thin #999999;
         margin-bottom: 1%;
       }
 
       @media screen and (min-width: 40em) {
-          p, .text1 {
+          p {
           width: 50%;
-          margin-bottom: 1em;
+          margin-bottom: 3em;
           margin-left: 25%;
           font-family: "hyqihei50j";
           font-size: 0.9em;
@@ -419,11 +414,17 @@
           text-indent: 2em;
           color: #555;
          }
+
+         h3 {
+          width: 50%;
+          margin-left: 25%;
+          margin-top: 10em;
+         }
+
          .video{
             width: 50%;
             margin-left: 25%;
             padding-bottom: 0.3%;
-            border-bottom: solid thin #999999;
             margin-bottom: 1%;
         }
       }
@@ -465,6 +466,18 @@
       }
             }
 
+      .chart4 {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      @media screen and (min-width:30em){
+        .chart4 {
+          width: 60%;
+          margin-left: 22%
+        }
+      }
+
 /*footer*/
       .footer {
           margin-top: 2%;
@@ -478,6 +491,7 @@
 
       .footer p {
           margin-top: 2%;
+          margin-bottom: 1em;
           padding-top: 1%;
           font-size: 12px;
           font-family: serif;

@@ -39,7 +39,7 @@
         margin-bottom: 1em;
         font-family: "hyqihei50j";
         font-size: 0.9em;
-        line-height: 150%;
+        line-height: 200%;
         color: #555;
       }
 
@@ -58,8 +58,15 @@
 
     .button1 {
       float:left;
-      padding: 10px;
-    }    
+      margin-bottom: 20px;
+    }  
+
+    @media screen and (min-width: 30em) {
+      .button1 {
+        padding: 30px;
+        margin-bottom: 0;
+      }
+    }      
 
      g .axis line,
      g .axis_left line,
