@@ -129,7 +129,7 @@
 
   <div id = "chart"></div>
   <div class="button1">
-      <button class="btn" id="eighty" margin-left="20%">1980</button>
+      <button class="btn" id="eighty" margin-left="20%">1982</button>
       <button class="btn" id="ninty">1990</button>
       <button class="btn" id="hundred">2000</button>
       <button class="btn" id="ten">2010</button>
@@ -409,6 +409,12 @@
           .attr("font-family", "sans-serif")
           .attr("class", "labels");
      };
+
+     svg.append("text")
+      .attr("x", "880")
+      .attr("y", "10")
+      .text("(%)");
+
 
 //set default:
       d3.select("#default_text").style("display", "inline");
