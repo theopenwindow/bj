@@ -406,7 +406,7 @@
       labels.transition()
           .duration(300)
           .attr("transform", function(d,i){
-              return "translate("+(width - margin)+ "," + (yScale(i)+margin*0.8) +")";
+              return "translate("+(width - margin*2)+ "," + (yScale(i)+margin*0.8) +")";
             })
           .text(function(d){
               return d.percent+"%";
