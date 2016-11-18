@@ -13,6 +13,10 @@
           font-style: normal;
       }
 
+      body {
+        margin: 0;
+      }      
+
 /*chart*/
       #chart {
         float:left;
@@ -30,8 +34,9 @@
 /*.text1 the div for three paragraphs  */    
       .text1 {
         float:left;
-        padding:9px;
         width: 95%;
+        padding-left: 2.5%;
+        padding-right:2.5%;
         margin-bottom: 1em;
         font-family: "hyqihei50j";
         font-size: 0.9em;
@@ -200,7 +205,7 @@
               .style("max-width", fullWidth + "px")
               .attr("preserveAspectRatio", "xMidYMid meet");
 
-    //Chart1:
+//Chart1:
 
       var bar_Chart1 = svg.append("g").attr("class", "bar1");
          
@@ -247,7 +252,7 @@
            .call(xAxis);
 
 
-    //Chart1:
+//Chart1:
          
          bar_Chart1.append("rect")
               .attr("width", "100%")
@@ -260,7 +265,7 @@
          xAxis_left.scale(xScale_left);
 
 
-    //Chart2:    
+//Chart2:    
      
          bar_Chart2.append("rect")
                     .attr("width", "100%")
@@ -275,7 +280,7 @@
 
 
 
-    //default:
+//default:
         var max_right = d3.max(eighty, function(d){
                                 return +d.percent;
                               });
@@ -287,7 +292,7 @@
         redraw(eighty); 
         d3.select(".btn#eighty").classed("selected", true);    
     
-    //redraws:  
+//redraws:  
       //set functions:
 
     function redraw_left(data){
@@ -401,7 +406,7 @@
       labels.transition()
           .duration(300)
           .attr("transform", function(d,i){
-              return "translate("+(width - margin*3)+ "," + (yScale(i)+margin*0.8) +")";
+              return "translate("+(width - margin)+ "," + (yScale(i)+margin*0.8) +")";
             })
           .text(function(d){
               return d.percent+"%";
