@@ -30,6 +30,16 @@
 
       }
 
+      .container {
+        width: 100%;
+      }
+
+      @media screen and (min-width: 190em){
+        .container {
+          width: 70%;
+        }
+      }
+
       body, div,
       h1, h2, h3, h4, h5, h6,
       p, blockquote, pre, dl, dt, dd, ol, ul, li, hr,
@@ -406,19 +416,19 @@
       @media screen and (min-width: 40em) {
           p {
           width: 50%;
-          margin-bottom: 3em;
+          margin-bottom: 48px;
           margin-left: 25%;
           font-family: "hyqihei50j";
-          font-size: 0.9em;
+          font-size: 14.5px;
           line-height: 200%;
-          text-indent: 2em;
+          text-indent: 32px;
           color: #555;
          }
 
          h3 {
           width: 50%;
           margin-left: 25%;
-          margin-top: 10em;
+          margin-top: 160px;
          }
 
          .video{
@@ -473,8 +483,8 @@
 
       @media screen and (min-width:30em){
         .chart3 {
-          width: 50%;
-          margin-left: 25%
+          width: 45%;
+          margin-left: 27.5%
         }
       }
 
