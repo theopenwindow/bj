@@ -1,5 +1,6 @@
+     
       /* =============================================
-       *
+       *HERE IS THE CODE I BORROWED FROM MIT FOR THE FIXED NAV...THANKS GUYS~
        *   FIXED RESPONSIVE NAV
        *
        *   (c) 2014 @adtileHQ
@@ -9,28 +10,6 @@
        *   Free to use under the MIT License.
        *
        * ============================================= */
-
-      @font-face {
-          font-family: 'hyqihei50j';
-          src: url('../font/50-webfont.woff2') format('woff2'),
-               url('../font/50-webfont.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-
-      }
-
-      .container {
-        height：3950px;
-      }
-
-       @media screen and (min-width: 30em) {
-        .container {
-          width: 1280px;
-          height: 4050px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-       }
 
 
       body, div,
@@ -310,6 +289,29 @@
         content: "\78"; /* Close icon */
       }
 
+/*--------------------------------THIS IS MY WORLD * - * ---------------------------------------*/      
+      @font-face {
+          font-family: 'hyqihei50j';
+          src: url('../font/50-webfont.woff2') format('woff2'),
+               url('../font/50-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+
+      }
+
+      .container {
+        height：3950px;
+      }
+
+       @media screen and (min-width: 30em) {
+        .container {
+          width: 1280px;
+          height: 4050px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+       }
+
         .cover {
             content:url("../img/mobile_cover.jpg");
             width: 100%;
@@ -476,8 +478,8 @@
 
       @media screen and (min-width:30em){
         .chart3 {
-          width: 45%;
-          margin-left: 27.5%
+          width: 55%;
+          margin-left: 22.5%
         }
       }
 
