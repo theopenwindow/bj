@@ -97,11 +97,11 @@
     .axis text,
     .axis_left text {
       font-family: 'hyqihei50j';
-      font-size: 14px;
+      font-size: 18px;
     }
 
       .labels{
-        font-size: 14.5px;
+        font-size: 20px;
         font-family: 'hyqihei50j';
       }
     }
@@ -230,7 +230,7 @@
 
          svg.append("g")
              .attr("class", "axis_left")
-             .attr("transform", "translate("+(margin*5.9)+" ,"+margin*0.6+")")
+             .attr("transform", "translate("+(margin*6.9)+" ,"+margin*0.6+")")
              .call(xAxis_left);
 
 
@@ -254,7 +254,7 @@
 
       svg.append("g")
            .attr("class", "axis")
-           .attr("transform", "translate(" + (width/2) + "," + margin*0.6 + ")")
+           .attr("transform", "translate(" + (width/2+margin) + "," + margin*0.6 + ")")
            .call(xAxis);
 
 
@@ -329,7 +329,7 @@
         })
         .attr("height", yScale.rangeBand())
         .attr("transform", function(d,i){
-                  return "translate("+[(width/2-xScale(+d.percent))+margin, yScale(i)] +")"
+                  return "translate("+[(width/2-xScale(+d.percent))+margin*2, yScale(i)] +")"
                 });
 
 
@@ -352,7 +352,7 @@
       labels.transition()
           .duration(300)
           .attr("transform", function(d,i){
-              return "translate("+(margin*0)+ "," + (yScale(i)+margin*0.8) +")";
+              return "translate("+(margin)+ "," + (yScale(i)+margin*0.8) +")";
             })
           .text(function(d){
               return d.class;
@@ -390,7 +390,7 @@
         })
         .attr("height", yScale.rangeBand())
         .attr("transform", function(d,i){
-          return "translate("+[width/2+margin, yScale(i)] +")"
+          return "translate("+[width/2+margin*2, yScale(i)] +")"
         });
 
        svg.select(".axis").transition().duration(1000).call(xAxis);
@@ -412,7 +412,7 @@
       labels.transition()
           .duration(300)
           .attr("transform", function(d,i){
-              return "translate("+(width - margin*2)+ "," + (yScale(i)+margin*0.8) +")";
+              return "translate("+(width - margin)+ "," + (yScale(i)+margin*0.8) +")";
             })
           .text(function(d){
               return d.percent+"%";
@@ -422,7 +422,7 @@
      };
 
      svg.append("text")
-      .attr("x", "880")
+      .attr("x", "915")
       .attr("y", "10")
       .text("(%)");
 

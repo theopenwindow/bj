@@ -300,13 +300,13 @@
       }
 
       .container {
-        height：3950px;
+        height: 3900px;
       }
 
        @media screen and (min-width: 30em) {
         .container {
           width: 1280px;
-          height: 4050px;
+          height: 4200px;
           margin-left: auto;
           margin-right: auto;
         }
@@ -360,12 +360,12 @@
       }
 
       #talents {
-        height: 1750px;
+        height: 1680px;
       }
 
       @media screen and (min-width: 30em){
         #talents {
-          height: 1950px;
+          height: 2100px;
         }
       }
 
@@ -479,7 +479,7 @@
       @media screen and (min-width:30em){
         .chart3 {
           width: 55%;
-          margin-left: 22.5%
+          margin-left: 24%
         }
       }
 
