@@ -10,17 +10,6 @@
        *
        * ============================================= */
 
-      /*@font-face {
-        font-family: 'hyqihei-50s';
-        src: url('font/hyqihei-50s-webfont.eot'); 
-        src: 
-          url('font/hyqihei-50s-webfont.eot') format('embedded-opentype'),
-          url('font/hyqihei-50s-webfont.woff') format('woff'),
-          url('font/hyqihei-50s.ttf') format('truetype'),
-          url('font/HYQiHei-50S.otf') format('opentype');
-        font-weight:normal;
-        font-style:normal;
-      }*/
       @font-face {
           font-family: 'hyqihei50j';
           src: url('../font/50-webfont.woff2') format('woff2'),
@@ -31,16 +20,18 @@
       }
 
       .container {
-        width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
+        height：3950px;
       }
 
-/*      @media screen and (min-width: 190em){
+       @media screen and (min-width: 30em) {
         .container {
-          width: 70%;
+          width: 1280px;
+          height: 4050px;
+          margin-left: auto;
+          margin-right: auto;
         }
-      }*/
+       }
+
 
       body, div,
       h1, h2, h3, h4, h5, h6,
@@ -535,33 +526,31 @@
       }
 
       @media screen and (min-width: 40em){
-      .footer {
-          margin-top: 2%;
-          padding-bottom: 1%;
-          padding-top: 1%;
-          
-          border-top: solid thin #e6e6e6;
-          background: linear-gradient(#f4f4f4, #ffffff);
+        .footer {
+            margin-top: 2%;
+            padding-bottom: 1%;
+            padding-top: 1%;
+            border-top: solid thin #e6e6e6;
+            background: linear-gradient(#f4f4f4, #ffffff);
+        }
 
-      }
+        .footer p {
+            margin-top:0;
+            padding-top: 0.5%;
+            font-size: 12px;
+            font-family: serif;
+            line-height: 50%;
+            text-align: center;
+        }
 
-      .footer p {
-          margin-top:0;
-          padding-top: 0.5%;
-          font-size: 12px;
-          font-family: serif;
-          line-height: 50%;
-          text-align: center;
-      }
+        .footer a:link {
+            text-decoration: none;
+            color: black;
+        }
 
-      .footer a:link {
-          text-decoration: none;
-          color: black;
-      }
-
-      .footer a:visited {
-          color: black;
-      }
+        .footer a:visited {
+            color: black;
+        }
       }
 
 
