@@ -350,12 +350,12 @@
       }
 
       #class {
-        height: 850px;
+        height: 900px;
       }
 
       @media screen and (min-width: 30em){
         #class {
-          height: 750px;
+          height: 880px;
         }
       }
 
