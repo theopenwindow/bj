@@ -306,7 +306,7 @@
        @media screen and (min-width: 30em) {
         .container {
           width: 1280px;
-          height: 4200px;
+          height: 4450px;
           margin-left: auto;
           margin-right: auto;
         }
@@ -346,7 +346,7 @@
 
 
       #pop {
-        height: 800px;
+        height: 850px;
       }
 
       #class {
@@ -365,7 +365,7 @@
 
       @media screen and (min-width: 30em){
         #talents {
-          height: 2100px;
+          height: 2150px;
         }
       }
 
